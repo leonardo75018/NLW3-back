@@ -11,6 +11,7 @@ const upload = multer(uploadConfig);
 
 orphanageRoute.get("/", orphanageController.getAll);
 orphanageRoute.get("/:id", orphanageController.getOne);
+orphanageRoute.delete("/:id", orphanageController.deleteOrphanege);
 orphanageRoute.post("/", upload.array("images"), orphanageController.create);
 
 export default orphanageRoute;
