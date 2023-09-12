@@ -19,15 +19,15 @@ export class PrismaUserRepoSitory implements UserRepository {
   }
 
   updateUser(params: UpdateUserParams): Promise<IUser> {
-    const { body, userId } = params
+    const { firstName, lastName, password, userId } = params
     const userUpdated = prisma.user.update({
       where: {
         id: Number(userId)
       },
       data: {
-        firstName: body.firstName,
-        lastName: body.lastName,
-        password: body.password
+        firstName,
+        lastName,
+        password
       }
     })
 
@@ -60,7 +60,9 @@ export class PrismaUserRepoSitory implements UserRepository {
 
   async deleteUser(userId: string): Promise<void> {
     await prisma.user.delete({
-      where: { id: 1 }
+      where: {
+        id: Number(userId)
+      }
     })
   }
 }

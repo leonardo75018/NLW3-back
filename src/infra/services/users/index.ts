@@ -1,2 +1,6 @@
-export * from './PrismaFindUsersService'
 export * from './PrismaCreateUserService'
+export * from './PrismaUpdateUserService'
+export * from './PrismaDeleteUserService'
+export * from './PrismaFindUsersService'
+export * from './PrismaFindUserByIdService'
+export * from './PrismaFindUserByEmailService'
