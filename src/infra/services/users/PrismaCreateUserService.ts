@@ -1,7 +1,7 @@
-import { IUser } from '../../domain/entities/IUser'
-import { UserService } from '../../domain/services/index'
-import { CreateUserParams } from '../../domain/types'
-import { PrismaUserRepoSitory } from '../repositories/index'
+import { IUser } from '../../../domain/entities/IUser'
+import { UserService } from '../../../domain/services/index'
+import { CreateUserParams } from '../../../domain/types'
+import { PrismaUserRepoSitory } from '../../repositories/index'
 
 interface IRequest {
   firstName: string
@@ -10,7 +10,7 @@ interface IRequest {
   password: string
 }
 
-export class PrismaUserService {
+export class PrismaCreateUserService {
   public async execute(params: IRequest): Promise<IUser> {
     const prismaUserRepoSitory = new PrismaUserRepoSitory()
     const userExists = await prismaUserRepoSitory.findUserByEmail(params.email)

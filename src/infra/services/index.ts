@@ -1,1 +1,1 @@
-export * from './PrismaUserService'
+export * from './users/index'
