@@ -1,7 +1,6 @@
 import { IUser } from '../../../domain/entities/IUser'
-import { UserService } from '../../../domain/services/index'
-import { CreateUserParams } from '../../../domain/types'
 import { PrismaUserRepoSitory } from '../../repositories/index'
+import { hash } from 'bcrypt'
 
 interface IRequest {
   firstName: string
@@ -11,14 +10,26 @@ interface IRequest {
 }
 
 export class PrismaCreateUserService {
-  public async execute(params: IRequest): Promise<IUser> {
+  public async execute({
+    firstName,
+    lastName,
+    password,
+    email
+  }: IRequest): Promise<IUser> {
     const prismaUserRepoSitory = new PrismaUserRepoSitory()
-    const userExists = await prismaUserRepoSitory.findUserByEmail(params.email)
+    const userExists = await prismaUserRepoSitory.findUserByEmail(email)
     if (userExists) {
       throw new Error('There is already one user with this email')
     }
 
-    const user = await prismaUserRepoSitory.createUser(params)
+    const passwordHash = await hash(password, 8)
+
+    const user = await prismaUserRepoSitory.createUser({
+      firstName,
+      lastName,
+      email,
+      password: passwordHash
+    })
     return user
   }
 }

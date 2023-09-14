@@ -7,6 +7,7 @@ import {
   PrismaFindUserByIdService,
   PrismaUpdateUserService
 } from '../services/index'
+import { AuthenticateUserService } from '../services/users/AuthenticateUserService'
 
 export class UserController {
   async create(request: Request, response: Response) {
@@ -54,5 +55,13 @@ export class UserController {
     const prismaDeleteUserService = new PrismaDeleteUserService()
     await prismaDeleteUserService.execute(userId)
     response.status(200).send(`user id:${userId} is deleted`)
+  }
+
+  async authenticate(request: Request, response: Response) {
+    const { email, password } = request.body
+
+    const authenticateUserService = new AuthenticateUserService()
+    const token = await authenticateUserService.execute({ email, password })
+    return response.status(200).json(token)
   }
 }
