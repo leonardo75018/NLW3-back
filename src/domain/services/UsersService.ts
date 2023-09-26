@@ -1,4 +1,4 @@
-import { IUser } from '../entities/IUser'
+import { IUser } from '../entities/User'
 import { CreateUserParams, UpdateUserParams } from '../types/index'
 
 export interface UserService {

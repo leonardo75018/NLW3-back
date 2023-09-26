@@ -1,5 +1,5 @@
 import { Request, Response, request, response } from 'express'
-import { IUser } from '../../domain/entities/IUser'
+
 import {
   PrismaCreateUserService,
   PrismaFindUsersService,
@@ -8,12 +8,12 @@ import {
   PrismaUpdateUserService
 } from '../services/index'
 import { AuthenticateUserService } from '../services/users/AuthenticateUserService'
-import { PrismaUserRepoSitory } from '../repositories'
+import { PrismaUsersRepoSitory } from '../repositories'
 
 export class UserController {
   async create(request: Request, response: Response) {
     const { firstName, lastName, email, password } = request.body
-    const prismaUserRepoSitory = new PrismaUserRepoSitory()
+    const prismaUserRepoSitory = new PrismaUsersRepoSitory()
     const prismaCreateUserService = new PrismaCreateUserService(
       prismaUserRepoSitory
     )

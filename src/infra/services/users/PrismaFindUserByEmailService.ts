@@ -1,8 +1,8 @@
-import { IUser } from '../../../domain/entities/IUser'
+import { User } from '../../../domain/entities/User'
 import { PrismaUsersRepoSitory } from '../../repositories'
 
 export class PrismaFindUserByEmailService {
-  async execute(userEmail: string): Promise<IUser | null> {
+  async execute(userEmail: string): Promise<User | null> {
     const prismaUserRepository = new PrismaUsersRepoSitory()
     const user = await prismaUserRepository.findUserByEmail(userEmail)
     if (!user) {

@@ -1,34 +1,43 @@
-import { describe, it, expect, jest } from '@jest/globals'
+import { describe, it, expect, jest, beforeEach } from '@jest/globals'
 import { PrismaCreateUserService } from './PrismaCreateUserService'
 import { FakePrismaUserRepoSitory } from '../../repositories/Fake/FakePrismaUserRepoSitory'
 
-describe('Create user', () => {
-  const fakePrismaUserRepoSitory = new FakePrismaUserRepoSitory()
-  const prismaCreateUserService = new PrismaCreateUserService(
-    fakePrismaUserRepoSitory
-  )
+let fakePrismaUserRepoSitory: FakePrismaUserRepoSitory
+let prismaCreateUserService: PrismaCreateUserService
 
-  it('Should retourn a user ', async () => {
-    const body = {
+describe('CreateUser', () => {
+  beforeEach(() => {
+    fakePrismaUserRepoSitory = new FakePrismaUserRepoSitory()
+    prismaCreateUserService = new PrismaCreateUserService(
+      fakePrismaUserRepoSitory
+    )
+  })
+
+  it('should be able to create a new user ', async () => {
+    const params = {
       firstName: 'leo',
       lastName: ' Antonio',
       email: 'leo@gmail.com',
       password: '1Z33'
     }
 
-    const user = await prismaCreateUserService.execute(body)
+    const user = await prismaCreateUserService.execute(params)
     expect(user).toHaveProperty('id')
-    expect(user.firstName).toBe(body.firstName)
-    expect(user.lastName).toBe(body.lastName)
-    expect(user.email).toBe(body.email)
+    expect(user.firstName).toBe(params.firstName)
+    expect(user.lastName).toBe(params.lastName)
+    expect(user.email).toBe(params.email)
   })
 
-  it('Should retourn error if user already exist', async () => {
-    const body = {
-      firstName: 'leo',
-      lastName: ' Antonio',
-      email: 'leo@gmail.com',
-      password: '1Z33'
-    }
-  })
+  // it('should not be able to create two users with the same email', async () => {
+  //   const params = {
+  //     firstName: 'leo',
+  //     lastName: ' Antonio',
+  //     email: 'leo@gmail.com',
+  //     password: '1Z33'
+  //   }
+
+  //   await prismaCreateUserService.execute(params)
+  //   expect(prismaCreateUserService.execute(params)).rejects.toBeInstanceOf(AppError)
+
+  // })
 })

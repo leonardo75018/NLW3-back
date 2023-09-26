@@ -1,4 +1,4 @@
-import { IUser } from '../../../domain/entities/IUser'
+import { User } from '../../../domain/entities/User'
 import { PrismaUsersRepoSitory } from '../../repositories/index'
 import { hash } from 'bcrypt'
 
@@ -17,7 +17,7 @@ export class PrismaCreateUserService {
     lastName,
     password,
     email
-  }: IRequest): Promise<IUser> {
+  }: IRequest): Promise<User> {
     const userExists = await this.prismaUserRepoSitory.findUserByEmail(email)
     if (userExists) {
       throw new Error('There is already one user with this email')

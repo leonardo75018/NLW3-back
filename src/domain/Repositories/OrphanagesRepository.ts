@@ -1,4 +1,4 @@
-import { IUser } from '../entities/IUser'
+import { IUser } from '../entities/User'
 
 interface createUserParams {
   firstName: string

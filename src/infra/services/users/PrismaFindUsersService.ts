@@ -1,8 +1,8 @@
-import { IUser } from '../../../domain/entities/IUser'
+import { User } from '../../../domain/entities/User'
 import { PrismaUsersRepoSitory } from '../../repositories'
 
 export class PrismaFindUsersService {
-  async execute(): Promise<IUser[] | null> {
+  async execute(): Promise<User[] | null> {
     const prismaUserRepository = new PrismaUsersRepoSitory()
     const users = await prismaUserRepository.findUsers()
 
