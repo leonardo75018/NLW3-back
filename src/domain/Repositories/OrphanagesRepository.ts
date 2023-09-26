@@ -1,21 +1,11 @@
-import { IUser } from '../entities/User'
-
-interface createUserParams {
-  firstName: string
-  lastName: string
-  email: string
-  password: string
-}
-
-interface updateUserParams {
-  id: string
-  user: IUser
-}
+import { Orphanage } from '../entities/Orphanage'
+import { createOrphanageBody } from '../types/CreateOrphanageBody'
+import { updateOrphanageBody } from '../types/UpdateOrphanageBody'
 
 export interface OrphanagesRepository {
-  createOrphanage(params: createUserParams): Promise<IUser>
-  updateOrphanage(params: updateUserParams): Promise<IUser>
-  deleteOrphanage(userId: string): Promise<void>
-  getOrphanageById(userId: string): Promise<IUser>
-  getOrphanages(): Promise<IUser[]>
+  createOrphanage(params: createOrphanageBody): Promise<Orphanage>
+  updateOrphanage(params: updateOrphanageBody): Promise<Orphanage>
+  deleteOrphanage(orphanageId: string): Promise<void>
+  getOrphanageById(orphanageId: string): Promise<Orphanage | null>
+  getOrphanages(): Promise<Orphanage[] | []>
 }

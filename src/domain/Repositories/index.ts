@@ -1,2 +1,2 @@
-import { UsersRepository } from './UsersRepository'
-import { OrphanagesRepository } from './OrphanagesRepository'
+export * from './OrphanagesRepository'
+export * from './UsersRepository'

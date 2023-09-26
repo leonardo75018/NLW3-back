@@ -1,12 +1,9 @@
-import { Image } from './Image'
-
-export interface Orphanage {
-  id: string
+export interface createOrphanageBody {
   name: string
   latitude: number
   longitude: number
   about: string
   instructions: string
   openOnWeekend: Boolean
-  images: Image[]
+  images?: []
 }
