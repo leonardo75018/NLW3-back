@@ -1,5 +1,5 @@
 import { IUser } from '../../../domain/entities/IUser'
-import { PrismaUserRepoSitory } from '../../repositories/index'
+import { PrismaUsersRepoSitory } from '../../repositories/index'
 import { hash } from 'bcrypt'
 
 interface IRequest {
@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 export class PrismaCreateUserService {
-  constructor(private prismaUserRepoSitory: PrismaUserRepoSitory) {}
+  constructor(private prismaUserRepoSitory: PrismaUsersRepoSitory) {}
 
   public async execute({
     firstName,

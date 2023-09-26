@@ -1,2 +1,2 @@
-import UserRepository from './UsersRepository'
-import OrphanageRepository from './OrphanageRepository'
+import { UsersRepository } from './UsersRepository'
+import { OrphanagesRepository } from './OrphanagesRepository'

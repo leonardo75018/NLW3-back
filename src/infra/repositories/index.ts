@@ -1,1 +1,1 @@
-export * from './PrismaUserRepoSitory'
+export * from './PrismaUsersRepoSitory'

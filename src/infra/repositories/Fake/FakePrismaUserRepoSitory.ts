@@ -1,10 +1,10 @@
 import { IUser } from '../../../domain/entities/IUser'
-import UserRepository from '../../../domain/Repositories/UsersRepository'
+import { UsersRepository } from '../../../domain/repositories/UsersRepository'
 import { CreateUserParams, UpdateUserParams } from '../../../domain/types'
 
 import prisma from '../../../outils/prisma'
 
-export class FakePrismaUserRepoSitory implements UserRepository {
+export class FakePrismaUserRepoSitory implements UsersRepository {
   private users: IUser[] = []
   async createUser(params: CreateUserParams): Promise<IUser> {
     const { firstName, lastName, email, password } = params

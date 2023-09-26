@@ -12,7 +12,7 @@ interface updateUserParams {
   user: IUser
 }
 
-export default interface OrphanageRepository {
+export interface OrphanagesRepository {
   createOrphanage(params: createUserParams): Promise<IUser>
   updateOrphanage(params: updateUserParams): Promise<IUser>
   deleteOrphanage(userId: string): Promise<void>

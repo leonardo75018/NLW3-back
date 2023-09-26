@@ -1,5 +1,5 @@
 import { compare } from 'bcrypt'
-import { PrismaUserRepoSitory } from '../../repositories/index'
+import { PrismaUsersRepoSitory } from '../../repositories/index'
 import { sign } from 'jsonwebtoken'
 
 interface IAuthenticateReques {
@@ -9,7 +9,7 @@ interface IAuthenticateReques {
 
 export class AuthenticateUserService {
   async execute({ email, password }: IAuthenticateReques) {
-    const prismaUserRepoSitory = new PrismaUserRepoSitory()
+    const prismaUserRepoSitory = new PrismaUsersRepoSitory()
     const user = await prismaUserRepoSitory.findUserByEmail(email)
     if (!user) {
       throw new Error('Email,Password incorrect ')

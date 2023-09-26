@@ -1,7 +1,7 @@
 import { IUser } from '../entities/IUser'
 import { CreateUserParams, UpdateUserParams } from '../types'
 
-export default interface UserRepository {
+export interface UsersRepository {
   createUser(params: CreateUserParams): Promise<IUser>
   updateUser(params: UpdateUserParams): Promise<IUser>
   deleteUser(userId: string): Promise<void>

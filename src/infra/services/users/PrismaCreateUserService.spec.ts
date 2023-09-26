@@ -1,7 +1,6 @@
 import { describe, it, expect, jest } from '@jest/globals'
 import { PrismaCreateUserService } from './PrismaCreateUserService'
 import { FakePrismaUserRepoSitory } from '../../repositories/Fake/FakePrismaUserRepoSitory'
-import { hash } from 'bcrypt'
 
 describe('Create user', () => {
   const fakePrismaUserRepoSitory = new FakePrismaUserRepoSitory()
