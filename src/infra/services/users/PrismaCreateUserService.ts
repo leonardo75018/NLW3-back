@@ -10,21 +10,22 @@ interface IRequest {
 }
 
 export class PrismaCreateUserService {
+  constructor(private prismaUserRepoSitory: PrismaUserRepoSitory) {}
+
   public async execute({
     firstName,
     lastName,
     password,
     email
   }: IRequest): Promise<IUser> {
-    const prismaUserRepoSitory = new PrismaUserRepoSitory()
-    const userExists = await prismaUserRepoSitory.findUserByEmail(email)
+    const userExists = await this.prismaUserRepoSitory.findUserByEmail(email)
     if (userExists) {
       throw new Error('There is already one user with this email')
     }
 
     const passwordHash = await hash(password, 8)
 
-    const user = await prismaUserRepoSitory.createUser({
+    const user = await this.prismaUserRepoSitory.createUser({
       firstName,
       lastName,
       email,

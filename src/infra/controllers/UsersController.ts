@@ -8,11 +8,15 @@ import {
   PrismaUpdateUserService
 } from '../services/index'
 import { AuthenticateUserService } from '../services/users/AuthenticateUserService'
+import { PrismaUserRepoSitory } from '../repositories'
 
 export class UserController {
   async create(request: Request, response: Response) {
     const { firstName, lastName, email, password } = request.body
-    const prismaCreateUserService = new PrismaCreateUserService()
+    const prismaUserRepoSitory = new PrismaUserRepoSitory()
+    const prismaCreateUserService = new PrismaCreateUserService(
+      prismaUserRepoSitory
+    )
     const user = await prismaCreateUserService.execute({
       firstName,
       lastName,
